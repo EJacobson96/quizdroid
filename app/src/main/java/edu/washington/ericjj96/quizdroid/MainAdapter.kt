@@ -31,7 +31,7 @@ class MainAdapter(val quiz: Quiz): RecyclerView.Adapter<CustomViewHolder>() {
 class CustomViewHolder(val view: View, var quizTopic: Topic? = null): RecyclerView.ViewHolder(view) {
     init {
         view.setOnClickListener {
-            val intent = Intent(view.context, TopicOverviewActivity::class.java)
+            val intent = Intent(view.context, MultiUseActivity::class.java)
             intent.putExtra("quizTopic", quizTopic)
             view.context.startActivity(intent)
         }

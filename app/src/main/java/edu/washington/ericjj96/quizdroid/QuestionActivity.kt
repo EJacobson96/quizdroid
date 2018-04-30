@@ -1,43 +1,74 @@
 package edu.washington.ericjj96.quizdroid
 
-import android.content.Intent
+import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.RadioButton
+import android.view.ViewGroup
 import android.widget.RadioGroup
-import kotlinx.android.synthetic.main.overview.*
 import kotlinx.android.synthetic.main.questions.*
 
 
-class QuestionActivity: AppCompatActivity() {
+class QuestionActivity: Fragment() {
+    private var quizTopic: Topic? = null
+    private var question: Question? = null
+    private var listener: OnQuestionSelectedListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.questions)
 
+        quizTopic = arguments.getSerializable("quizTopic") as Topic
+        question = quizTopic?.topicQuestions?.get(0)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+        return inflater!!.inflate(R.layout.questions, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
         submitButton.visibility = View.INVISIBLE
-        val quizTopic = intent.getSerializableExtra("quizTopic") as Topic
-        val question = quizTopic.topicQuestions.get(0)
-        topic_Question.text = question.topicQuestion
-        option1.text = question.options.get(0)
-        option2.text = question.options.get(1)
-        option3.text = question.options.get(2)
-        option4.text = question.options.get(3)
+        topic_Question.text = question?.topicQuestion
+        option1.text = question?.options?.get(0)
+        option2.text = question?.options?.get(1)
+        option3.text = question?.options?.get(2)
+        option4.text = question?.options?.get(3)
 
         radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, ID ->
             submitButton.visibility = View.VISIBLE
         })
 
         submitButton.setOnClickListener {
-            val currID = radioGroup.checkedRadioButtonId
-            val radioButtonChecked = findViewById<RadioButton>(currID)
-            val intent = Intent(this, AnswerActivity::class.java)
-            intent.putExtra("quizTopic", quizTopic)
-            intent.putExtra("userInput", radioButtonChecked.text)
-            this.startActivity(intent)
+            val id = radioGroup.checkedRadioButtonId
+            Log.i("tag", id.toString())
+            this.submit(quizTopic, id)
         }
     }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is OnQuestionSelectedListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    fun submit(topic: Topic?, userInput: Int?) {
+        listener?.onQuestionSelected(topic, userInput)
+    }
+
+    interface OnQuestionSelectedListener {
+        fun onQuestionSelected(topic: Topic?, userInput: Int?)
+    }
+
+
 }

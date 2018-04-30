@@ -1,32 +1,59 @@
 package edu.washington.ericjj96.quizdroid
 
-import android.content.Intent
+import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import kotlinx.android.synthetic.main.overview.*
 
-class TopicOverviewActivity: AppCompatActivity() {
+class TopicOverviewActivity: Fragment() {
+    private var quizTopic: Topic? = null
+    private var listener: OnTopicSelectedListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.overview)
+        quizTopic = arguments.getSerializable("quizTopic") as Topic
 
-        val quizTopic = intent.getSerializableExtra("quizTopic") as Topic
-        overviewDescription.text = quizTopic.topicDescription
-        totalQuestions.text = quizTopic.topicQuestions.size.toString()
+    }
 
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+        return inflater!!.inflate(R.layout.overview, container, false)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        overviewDescription.text = this.quizTopic?.topicDescription
+        totalQuestions.text = quizTopic?.topicQuestions?.size.toString()
         beginButton.setOnClickListener {
-            val intent = Intent(this, QuestionActivity::class.java)
-            intent.putExtra("quizTopic", quizTopic)
-            this.startActivity(intent)
+            this.startQuiz(this.quizTopic)
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnTopicSelectedListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
 
+    fun startQuiz(topic: Topic?) {
+        listener?.onTopicSelected(topic)
+    }
+
+    interface OnTopicSelectedListener {
+        fun onTopicSelected(topic: Topic?)
+    }
 
 }
