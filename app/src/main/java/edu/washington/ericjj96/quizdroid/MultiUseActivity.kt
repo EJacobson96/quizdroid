@@ -6,13 +6,13 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.RadioButton
 
-class MultiUseActivity: AppCompatActivity(), TopicOverviewActivity.OnTopicSelectedListener,
-        QuestionActivity.OnQuestionSelectedListener {
+class MultiUseActivity: AppCompatActivity(), TopicOverviewFragment.OnTopicSelectedListener,
+        QuestionFragment.OnQuestionSelectedListener {
 
     override fun onTopicSelected(topic: Topic?) {
         val args = Bundle()
         args.putSerializable("quizTopic", topic)
-        val questionFragment = QuestionActivity()
+        val questionFragment = QuestionFragment()
         questionFragment.arguments = args
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.multi_use_activity, questionFragment)
@@ -25,7 +25,7 @@ class MultiUseActivity: AppCompatActivity(), TopicOverviewActivity.OnTopicSelect
         args.putSerializable("quizTopic", topic)
         val userAnswerText = findViewById<RadioButton>(userInput as Int).text
         args.putString("userInput", userAnswerText as String)
-        val answerFragment = AnswerActivity()
+        val answerFragment = AnswerFragment()
         answerFragment.arguments = args
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.multi_use_activity, answerFragment)
@@ -48,7 +48,7 @@ class MultiUseActivity: AppCompatActivity(), TopicOverviewActivity.OnTopicSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.multi_use_activity)
 
-        val overviewFragment = TopicOverviewActivity()
+        val overviewFragment = TopicOverviewFragment()
         overviewFragment.arguments = intent.extras
         val transaction = fragmentManager.beginTransaction()
         transaction.add(R.id.multi_use_activity, overviewFragment)

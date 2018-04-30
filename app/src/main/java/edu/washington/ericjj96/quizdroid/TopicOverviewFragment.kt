@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.overview.*
 
-class TopicOverviewActivity: Fragment() {
+class TopicOverviewFragment: Fragment() {
     private var quizTopic: Topic? = null
     private var listener: OnTopicSelectedListener? = null
 

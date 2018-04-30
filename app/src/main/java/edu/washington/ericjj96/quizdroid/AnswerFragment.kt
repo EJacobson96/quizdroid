@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.answers.*
 import kotlinx.android.synthetic.main.questions.*
 
-class AnswerActivity: Fragment() {
+class AnswerFragment: Fragment() {
     private var quizTopic: Topic? = null
     private var userInput: String? = null
     private var question: Question? = null

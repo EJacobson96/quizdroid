@@ -11,7 +11,7 @@ import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.questions.*
 
 
-class QuestionActivity: Fragment() {
+class QuestionFragment: Fragment() {
     private var quizTopic: Topic? = null
     private var question: Question? = null
     private var listener: OnQuestionSelectedListener? = null
