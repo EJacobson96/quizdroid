@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.questions.*
 
 class QuestionFragment: Fragment() {
     private var quizTopic: Topic? = null
-    private var question: Question? = null
+    private var question: Quiz? = null
     private var listener: OnQuestionSelectedListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

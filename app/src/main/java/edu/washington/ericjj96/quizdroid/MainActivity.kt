@@ -11,21 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mathQ1 = Question("What is 2 + 2?", arrayOf("1", "2", "3", "4"), 3)
 
-        val mathTopic = Topic("Math","Simple maths", arrayOf(mathQ1))
-
-        val physicsQ1 = Question("What is acceleration of gravity?", arrayOf("5.5", "5.6", "-7.5", "-9.8"), 3)
-
-        val physicsTopic = Topic("Physics","Basic introductory to physics", arrayOf(physicsQ1))
-
-        val marvel = Question("What Captain America's first name?", arrayOf("Bob", "Joe", "Steve", "Frank"), 2)
-
-        val marvelTopic = Topic("Marvel Super Heroes","Captain America Trivia", arrayOf(marvel))
-
-        val quiz = Quiz(arrayOf(mathTopic, physicsTopic, marvelTopic))
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        recyclerView_main.adapter = MainAdapter(quiz)
+        recyclerView_main.adapter = MainAdapter(QuizApp.getRepository())
     }
 }
