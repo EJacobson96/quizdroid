@@ -2,28 +2,36 @@ package edu.washington.ericjj96.quizdroid
 
 import java.io.Serializable
 
-class Quiz {
+class QuizData : TopicRepository {
     val listOfTopics: MutableList<String> = mutableListOf()
-    val quizTopics: Array<Topic>
+    val quizTopics: MutableList<Topic> = mutableListOf()
 
-    constructor(topics: Array<Topic>) {
-        this.quizTopics = topics
-        for (topic in topics) {
-            this.listOfTopics.add(topic.topicTitle)
-        }
+    constructor()
+
+    override fun add(topic: Topic) {
+        this.quizTopics.add(topic)
+        listOfTopics.add(topic.topicTitle)
+    }
+
+    override fun get(): MutableList<Topic> {
+        return this.quizTopics
+    }
+
+    override fun remove(topic: Topic) {
+        this.quizTopics.remove(topic)
     }
 }
 
 class Topic: Serializable {
     val topicTitle: String
     val topicDescription: String
-    val topicQuestions: Array<Question>
+    val topicQuestions: Array<Quiz>
 
-    constructor(title: String, description: String, questions: Array<Question>) {
+    constructor(title: String, description: String, questions: Array<Quiz>) {
         this.topicTitle = title
         this.topicDescription = description
         this.topicQuestions = questions
     }
 }
 
-class Question(val topicQuestion: String, val options: Array<String>, val answer:Int): Serializable
+class Quiz(val topicQuestion: String, val options: Array<String>, val answer:Int): Serializable

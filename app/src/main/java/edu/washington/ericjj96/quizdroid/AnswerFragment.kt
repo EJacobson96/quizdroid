@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.questions.*
 class AnswerFragment: Fragment() {
     private var quizTopic: Topic? = null
     private var userInput: String? = null
-    private var question: Question? = null
+    private var question: Quiz? = null
     private var correctAnswer: String? = null
     private var correctAnswers: Int? = null
 //    private var listener: OnAnswerSelectedListener? = null

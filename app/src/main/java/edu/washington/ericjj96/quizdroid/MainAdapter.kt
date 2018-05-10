@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.topic_row.view.*
 
 
-class MainAdapter(val quiz: Quiz): RecyclerView.Adapter<CustomViewHolder>() {
+class MainAdapter(val quiz: QuizData): RecyclerView.Adapter<CustomViewHolder>() {
 
     override fun getItemCount(): Int {
         return quiz.listOfTopics.size
