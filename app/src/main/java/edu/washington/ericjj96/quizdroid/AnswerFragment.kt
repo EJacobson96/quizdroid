@@ -26,8 +26,8 @@ class AnswerFragment: Fragment() {
 
         quizTopic = arguments.getSerializable("quizTopic") as Topic
         userInput = arguments.getString("userInput")
-        question = quizTopic?.topicQuestions?.get(0)
-        correctAnswer = question?.options!!.get(question!!.answer)
+        question = quizTopic?.questions?.get(0)
+        correctAnswer = question?.answers!!.get(question!!.answer.minus(1))
         correctAnswers = 0
 
     }

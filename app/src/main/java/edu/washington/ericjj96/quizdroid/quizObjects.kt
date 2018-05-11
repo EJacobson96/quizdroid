@@ -10,7 +10,7 @@ class QuizData : TopicRepository {
 
     override fun add(topic: Topic) {
         this.quizTopics.add(topic)
-        listOfTopics.add(topic.topicTitle)
+        listOfTopics.add(topic.title)
     }
 
     override fun get(): MutableList<Topic> {
@@ -23,15 +23,15 @@ class QuizData : TopicRepository {
 }
 
 class Topic: Serializable {
-    val topicTitle: String
-    val topicDescription: String
-    val topicQuestions: Array<Quiz>
+    val title: String
+    val desc: String
+    val questions: Array<Quiz>
 
     constructor(title: String, description: String, questions: Array<Quiz>) {
-        this.topicTitle = title
-        this.topicDescription = description
-        this.topicQuestions = questions
+        this.title = title
+        this.desc = description
+        this.questions = questions
     }
 }
 
-class Quiz(val topicQuestion: String, val options: Array<String>, val answer:Int): Serializable
+class Quiz(val text: String, val answers: Array<String>, val answer:Int): Serializable

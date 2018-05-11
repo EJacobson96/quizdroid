@@ -23,7 +23,7 @@ class MainAdapter(val quiz: QuizData): RecyclerView.Adapter<CustomViewHolder>() 
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val topicTitle = quiz.quizTopics.get(position)
-        holder?.view?.topic_title?.text = topicTitle.topicTitle
+        holder?.view?.topic_title?.text = topicTitle.title
         holder.quizTopic = topicTitle
     }
 }

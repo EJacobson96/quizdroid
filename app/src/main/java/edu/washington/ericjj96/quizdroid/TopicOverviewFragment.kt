@@ -27,8 +27,8 @@ class TopicOverviewFragment: Fragment() {
 
     override fun onStart() {
         super.onStart()
-        overviewDescription.text = this.quizTopic?.topicDescription
-        totalQuestions.text = quizTopic?.topicQuestions?.size.toString()
+        overviewDescription.text = this.quizTopic?.desc
+        totalQuestions.text = quizTopic?.questions?.size.toString()
         beginButton.setOnClickListener {
             this.startQuiz(this.quizTopic)
         }

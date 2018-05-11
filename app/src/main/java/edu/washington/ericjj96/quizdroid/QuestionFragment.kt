@@ -20,7 +20,7 @@ class QuestionFragment: Fragment() {
         super.onCreate(savedInstanceState)
 
         quizTopic = arguments.getSerializable("quizTopic") as Topic
-        question = quizTopic?.topicQuestions?.get(0)
+        question = quizTopic?.questions?.get(0)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -31,11 +31,11 @@ class QuestionFragment: Fragment() {
     override fun onStart() {
         super.onStart()
         submitButton.visibility = View.INVISIBLE
-        topic_Question.text = question?.topicQuestion
-        option1.text = question?.options?.get(0)
-        option2.text = question?.options?.get(1)
-        option3.text = question?.options?.get(2)
-        option4.text = question?.options?.get(3)
+        topic_Question.text = question?.text
+        option1.text = question?.answers?.get(0)
+        option2.text = question?.answers?.get(1)
+        option3.text = question?.answers?.get(2)
+        option4.text = question?.answers?.get(3)
 
         radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, ID ->
             submitButton.visibility = View.VISIBLE
