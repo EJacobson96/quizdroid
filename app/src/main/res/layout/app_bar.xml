@@ -3,7 +3,22 @@
     android:id="@+id/App_Bar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
+    android:background="@android:color/holo_blue_dark"
     android:theme="@style/AppTheme.PopupOverlay">
+
+    <TextView
+        android:id="@+id/appBarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preferences"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
+
+    <ImageView
+        android:id="@+id/appBarIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_action_name" />
+
 
 </android.support.v7.widget.Toolbar>

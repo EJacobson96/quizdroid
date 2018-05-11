@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.questions.*
 
 
@@ -46,6 +47,9 @@ class QuestionFragment: Fragment() {
             Log.i("tag", id.toString())
             this.submit(quizTopic, id)
         }
+        appBarIcon.setOnClickListener{
+            listener?.toPreferences()
+        }
     }
 
     override fun onAttach(context: Context?) {
@@ -68,6 +72,7 @@ class QuestionFragment: Fragment() {
 
     interface OnQuestionSelectedListener {
         fun onQuestionSelected(topic: Topic?, userInput: Int?)
+        fun toPreferences()
     }
 
 

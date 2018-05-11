@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".MultiUseActivity">
         </activity>
+        <activity android:name=".Preferences">
+        </activity>
 
         <!--<activity android:name=".TopicOverviewActivity"-->
             <!--android:label="Topic Overview"-->

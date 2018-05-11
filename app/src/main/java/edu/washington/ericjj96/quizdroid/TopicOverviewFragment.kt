@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.overview.*
 
 class TopicOverviewFragment: Fragment() {
@@ -32,6 +33,9 @@ class TopicOverviewFragment: Fragment() {
         beginButton.setOnClickListener {
             this.startQuiz(this.quizTopic)
         }
+        appBarIcon.setOnClickListener{
+            listener?.toPreferences()
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -54,6 +58,7 @@ class TopicOverviewFragment: Fragment() {
 
     interface OnTopicSelectedListener {
         fun onTopicSelected(topic: Topic?)
+        fun toPreferences()
     }
 
 }

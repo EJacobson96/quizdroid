@@ -1,5 +1,6 @@
 package edu.washington.ericjj96.quizdroid
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
@@ -11,5 +12,6 @@ class Preferences : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.preferences_content)
         setSupportActionBar(App_Bar)
+
     }
 }

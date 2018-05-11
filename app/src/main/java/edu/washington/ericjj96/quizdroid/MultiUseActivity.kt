@@ -1,10 +1,12 @@
 package edu.washington.ericjj96.quizdroid
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.RadioButton
+import kotlinx.android.synthetic.main.app_bar.*
 
 class MultiUseActivity: AppCompatActivity(), TopicOverviewFragment.OnTopicSelectedListener,
         QuestionFragment.OnQuestionSelectedListener {
@@ -53,5 +55,10 @@ class MultiUseActivity: AppCompatActivity(), TopicOverviewFragment.OnTopicSelect
         val transaction = fragmentManager.beginTransaction()
         transaction.add(R.id.multi_use_activity, overviewFragment)
         transaction.commit()
+    }
+
+    override fun toPreferences() {
+        val intent = Intent(this, Preferences::class.java)
+        startActivity(intent)
     }
 }
