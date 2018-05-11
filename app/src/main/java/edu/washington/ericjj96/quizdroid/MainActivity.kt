@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this,
                     arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1)
         }
-        var file = File("./sdcard/questions.json")
+        var file = File("./sdcard/myquestions.json")
         val gson = GsonBuilder().create()
         val topicList: Array<Topic> = gson.fromJson(file.reader(), Array<Topic>::class.java)
         if (QuizApp.data.quizTopics.isEmpty()) {
